@@ -64,7 +64,8 @@ class Status < ApplicationRecord
 
   validates :uri, uniqueness: true, presence: true, unless: :local?
   validates :text, presence: true, unless: -> { with_media? || reblog? }
-  validates_with StatusLengthValidator
+  # zhuowei: remove length
+  # validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
 
